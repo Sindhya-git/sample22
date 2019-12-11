@@ -1,0 +1,7 @@
+gunicorn
+Flask
+boto3==1.7.46
+botocore==1.10.46
+ibm-cos-sdk==2.1.1
+ibm-cos-sdk-core==2.0.0
+ibm-cos-sdk-s3transfer==2.0.0
