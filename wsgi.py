@@ -22,7 +22,7 @@ cos = ibm_boto3.resource(service_name='s3',
 bucket_name = 'gamification-cos-standard-tkq'
 
 @application.route("/")
-def get_bucket_contents(bucket_name):
+def get_bucket_contents():
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
         files = cos.Bucket(bucket_name).objects.all()
