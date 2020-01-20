@@ -26,10 +26,18 @@ def get_bucket_contents():
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
         print("in try",)
-        files = cos.Bucket(bucket_name).objects.all()
-        for file in files:
-            print("in for",)
-            print("Item: {0} ({1} bytes).".format(file.key, file.size))
+        mybucket = coS.get_bucket(bucket) 
+ 
+        for key in mybucket.list():
+        print "{name}\t{size}\t{modified}".format(
+                name = key.name,
+                size = key.size,
+                modified = key.last_modified,
+                )
+        #files = cos.Bucket(bucket_name).objects.all()
+        #for file in files:
+         #   print("in for",)
+         #   print("Item: {0} ({1} bytes).".format(file.key, file.size))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
