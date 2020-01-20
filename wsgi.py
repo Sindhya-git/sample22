@@ -1,5 +1,9 @@
+from flask import Flask, render_template, json, request, session, redirect
 import ibm_boto3
 from ibm_botocore.client import Config, ClientError
+import os
+
+application = Flask(__name__)
 
 # Constants for IBM COS values
 COS_ENDPOINT = "http://s3.us-south.cloud-object-storage.appdomain.cloud/" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
@@ -28,6 +32,7 @@ def get_bucket_contents(bucket_name):
         print("Unable to retrieve bucket contents: {0}".format(e))
 
 if __name__ == "__main__":
+    application.run()
 get_bucket_contents('gamification-cos-standard-tkq')
 
 # for bucket in cos.buckets.all():
