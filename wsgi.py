@@ -25,8 +25,10 @@ bucket_name = 'gamification-cos-standard-tkq'
 def get_bucket_contents():
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
+        print("in try",)
         files = cos.Bucket(bucket_name).objects.all()
         for file in files:
+            print("in for",)
             print("Item: {0} ({1} bytes).".format(file.key, file.size))
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
