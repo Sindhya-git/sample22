@@ -26,7 +26,9 @@ def get_bucket_contents():
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
         print("in try",)
-        mybucket = cos.get_bucket(bucket) 
+        mybucket = cos.Bucket(bucket_name) 
+        files = cos.Bucket(bucket_name).objects.all()
+        print("files :",files)
  
         for key in mybucket.list():
             print("NAME :".format(
