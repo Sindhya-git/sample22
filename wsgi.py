@@ -29,7 +29,7 @@ def get_bucket_contents():
         mybucket = coS.get_bucket(bucket) 
  
         for key in mybucket.list():
-        print("{name}\t{size}\t{modified}".format(
+        print("NAME :".format(
                 name = key.name,
                 size = key.size,
                 modified = key.last_modified,
