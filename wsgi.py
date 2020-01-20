@@ -26,7 +26,7 @@ def get_bucket_contents():
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
         print("in try",)
-        mybucket = coS.get_bucket(bucket) 
+        mybucket = cos.get_bucket(bucket) 
  
         for key in mybucket.list():
             print("NAME :".format(
