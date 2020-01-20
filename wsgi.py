@@ -29,11 +29,11 @@ def get_bucket_contents():
         mybucket = coS.get_bucket(bucket) 
  
         for key in mybucket.list():
-        print "{name}\t{size}\t{modified}".format(
+        print("{name}\t{size}\t{modified}".format(
                 name = key.name,
                 size = key.size,
                 modified = key.last_modified,
-                )
+                ))
         #files = cos.Bucket(bucket_name).objects.all()
         #for file in files:
          #   print("in for",)
