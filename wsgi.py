@@ -35,7 +35,7 @@ def get_bucket_contents():
         f = item_id + '.jpg'
         #img_data = get_item
         file = cos.Object(bucket_name, f).get()
-        print(type(file))
+        print("type(file) :", file)
         
         if file:
             #with tempfile.NamedTemporaryFile() as temp:
