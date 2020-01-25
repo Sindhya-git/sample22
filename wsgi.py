@@ -34,7 +34,7 @@ def get_bucket_contents():
         item_id = '1002'
         f = item_id + '.jpg'
         #img_data = get_item
-        file = blob(cos.Object(bucket_name, f).get())
+        file = str(cos.Object(bucket_name, f).get())
         print(type(file))
         
         if file:
