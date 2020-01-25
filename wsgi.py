@@ -3,7 +3,8 @@ from flask import Response
 from flask import send_file
 import ibm_boto3
 from ibm_botocore.client import Config, ClientError
-import os
+import io, os
+
 
 application = Flask(__name__)
 
