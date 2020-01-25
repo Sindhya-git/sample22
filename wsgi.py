@@ -34,14 +34,15 @@ def get_bucket_contents():
         item_id = '1002'
         f = item_id + '.jpg'
         #img_data = get_item
-        file = str(cos.Object(bucket_name, f).get())
+        file = cos.Object(bucket_name, f).get()
         print(type(file))
         
         if file:
             #with tempfile.NamedTemporaryFile() as temp:
              #   file.download_to_filename(temp.name)
              #   return send_file(temp.name, attachment_filename=file)
-            return send_file(file, mimetype='image/jpeg')
+            with open(file, 'rb') as bites:
+                return send_file(io.BytesIO(bites.read()),attachment_filename='logo.jpeg', mimetype='image/jpeg')
         files = cos.Bucket(bucket_name).objects.all()
         print("files :",files)
  
