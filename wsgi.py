@@ -30,12 +30,12 @@ def get_bucket_contents():
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
         print("in try",)
-        mybucket = cos.Bucket(bucket_name) 
         item_id = '1002'
         f = item_id + '.jpg'
         #img_data = get_item
         file = cos.Object(bucket_name, f).get()
         if file:
+            print("File Contents: {0}".format(file["Body"].read()))
             return send_file(file, mimetype='image/jpg')
         files = cos.Bucket(bucket_name).objects.all()
         print("files :",files)
