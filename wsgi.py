@@ -41,10 +41,10 @@ def get_bucket_contents():
             #with tempfile.NamedTemporaryFile() as temp:
              #   file.download_to_filename(temp.name)
              #   return send_file(temp.name, attachment_filename=file)
-            #r = flask.Response()
-            #r.headers["Content-Type"] = "image/jpeg"
+            r = Response()
+            r.headers["Content-Type"] = "image/jpeg"
             #with open(file, 'rb') as bites:
-            return send_file(format(file["Body"].read()),attachment_filename='logo.jpeg', mimetype='image/jpeg')
+            return send_file(.format(file["Body"].read()), mimetype='image/jpeg')
         files = cos.Bucket(bucket_name).objects.all()
         print("files :",files)
  
