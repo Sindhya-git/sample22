@@ -3,7 +3,7 @@ from flask import Response
 from flask import send_file
 import ibm_boto3
 from ibm_botocore.client import Config, ClientError
-import io, os
+import StringIO, os
 
 
 application = Flask(__name__)
@@ -36,7 +36,7 @@ def get_bucket_contents():
         #img_data = get_item
         file = cos.Object(bucket_name, f).get()
         if file:
-            return send_file(io.BytesIO(file), mimetype='image/jpg')
+            return send_file(StringIO.StringIO(file), mimetype='image/jpeg')
         files = cos.Bucket(bucket_name).objects.all()
         print("files :",files)
  
