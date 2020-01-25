@@ -1,6 +1,6 @@
 from flask import Flask, render_template, json, request, session, redirect
 from flask import Response
-from flask_http_response import success, result, error
+from flask import send_file
 import ibm_boto3
 from ibm_botocore.client import Config, ClientError
 import os
@@ -31,12 +31,12 @@ def get_bucket_contents():
     try:
         print("in try",)
         mybucket = cos.Bucket(bucket_name) 
+        item_id = 1002
         f = item_id + '.jpg'
         #img_data = get_item
         file = cos.Object(bucket_name, item_name).get()
         if file:
-            return HttpResponse(file,content_type="image/jpg")
-            result.return_response("success") 
+            return send_file(filename, mimetype='image/jpg')
         files = cos.Bucket(bucket_name).objects.all()
         print("files :",files)
  
