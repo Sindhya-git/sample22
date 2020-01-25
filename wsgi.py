@@ -1,4 +1,6 @@
 from flask import Flask, render_template, json, request, session, redirect
+from flask import Response
+from flask_http_response import success, result, error
 import ibm_boto3
 from ibm_botocore.client import Config, ClientError
 import os
@@ -6,9 +8,9 @@ import os
 application = Flask(__name__)
 
 # Constants for IBM COS values
-COS_ENDPOINT = "https://s3.us-south.cloud-object-storage.appdomain.cloud/" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
+COS_ENDPOINT = "https://s3.us-south.cloud-object-storage.appdomain.cloud" # Current list avaiable at https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints
 COS_API_KEY_ID = "_bAzHuCAN1yPz4Rcg5CZY1Tbp0UOpshuMhpoNkIvJAa3" # eg "W00YiRnLW4a3fTjMB-odB-2ySfTrFBIQQWanc--P3byk"
-COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/identity/token"
+COS_AUTH_ENDPOINT = "https://iam.cloud.ibm.com/oidc/token"
 COS_RESOURCE_CRN = "crn:v1:bluemix:public:cloud-object-storage:global:a/693fe8ead49b44b192004113d21b15c2:fce26086-5b77-42cc-b1aa-d388aa2853d7::" # eg "crn:v1:bluemix:public:cloud-object-storage:global:a/3bf0d9003abfb5d29761c3e97696b71c:d6f04d83-6c4f-4a62-a165-696756d63903::"
 
 ibm_boto3.set_stream_logger('')
@@ -29,6 +31,12 @@ def get_bucket_contents():
     try:
         print("in try",)
         mybucket = cos.Bucket(bucket_name) 
+        f = item_id + '.jpg'
+        #img_data = get_item
+        file = cos.Object(bucket_name, item_name).get()
+        if file:
+            return HttpResponse(file,content_type="image/jpg")
+            result.return_response("success") 
         files = cos.Bucket(bucket_name).objects.all()
         print("files :",files)
  
