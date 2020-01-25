@@ -44,7 +44,7 @@ def get_bucket_contents():
             r = Response()
             r.headers["Content-Type"] = "image/jpeg"
             #with open(file, 'rb') as bites:
-            return send_file(.format(file["Body"].read()), mimetype='image/jpeg')
+            return send_file(format(file["Body"].read()), mimetype='image/jpeg')
         files = cos.Bucket(bucket_name).objects.all()
         print("files :",files)
  
