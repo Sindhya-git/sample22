@@ -39,7 +39,7 @@ def get_bucket_contents():
         
         if file:
             with tempfile.NamedTemporaryFile() as temp:
-                blob.download_to_filename(temp.name)
+                file.download_to_filename(temp.name)
                 return send_file(temp.name, attachment_filename=file)
             #return send_file(StringIO.StringIO(file), mimetype='image/jpeg')
         files = cos.Bucket(bucket_name).objects.all()
