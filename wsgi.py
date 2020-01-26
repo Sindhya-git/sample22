@@ -38,12 +38,10 @@ def get_bucket_contents():
         print("type(file) :", file)
         
         if file:
-            #with tempfile.NamedTemporaryFile() as temp:
-             #   file.download_to_filename(temp.name)
-             #   return send_file(temp.name, attachment_filename=file)
-            r = Response()
-            r.headers["Content-Type"] = "image/jpeg"
-            img = format(file["Body"].read())
+            content_type = 'image/jpeg'
+            headers = {'content-type': content_type}
+            
+            img = open(format(file["Body"], 'rb').read())
             #with open(file, 'rb') as bites:
             return send_file(img, mimetype='image/jpeg')
         files = cos.Bucket(bucket_name).objects.all()
