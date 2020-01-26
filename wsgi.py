@@ -44,12 +44,19 @@ def get_bucket_contents():
         f = item_id + '.jpg'
         #isr = cos.get_object(Bucket=bucket_name, Key=f)
         isr = cos.Object(bucket_name, f).get()
-        jpg = isr['Body'].read()
+        imgjpg = isr['Body'].read()
         print("read")
+        with open(imgjpg, 'rb') as bites:
+        return send_file(
+                     io.BytesIO(bites.read()),
+                     attachment_filename='logo.jpeg',
+                     as_attachment=True,
+                     mimetype='image/jpg'
+               )
         #img = open(jpg, 'rb').read()
-        URL = "http://cosimg-ikea-d-o-d.gamification-d3c0cb24e2b77f6869027abe3de4bca3-0001.sng01.containers.appdomain.cloud"
+        #URL = "http://cosimg-ikea-d-o-d.gamification-d3c0cb24e2b77f6869027abe3de4bca3-0001.sng01.containers.appdomain.cloud"
         #response = requests.post(URL, data=img, headers=headers)
-        return send_file(jpg, mimetype='image/jpeg')       
+        #return send_file(jpg, mimetype='image/jpeg')       
         
         
         
