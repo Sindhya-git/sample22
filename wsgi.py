@@ -4,6 +4,9 @@ from flask import send_file
 import ibm_boto3
 from ibm_botocore.client import Config, ClientError
 import tempfile, os
+import sys
+import types
+import pandas as pd
 
 
 application = Flask(__name__)
@@ -40,18 +43,18 @@ def get_bucket_contents():
            print("Item: {0} ({1} bytes).".format(file.key, file.size))
         item_id = '1002'
         f = item_id + '.jpg'
+        isr = cos.get_object(Bucket=bucket_name, Key=f)
+        jpg = isr['Body']
+        print(type(jpg))
+        img = skyio.imread(jpg)
+        print("cgsReadImage: \n\tBucket=%s \n\tFile=%s \n\tArraySize=%d %s Type=%s\n" % (bucket_name, f, img.size, img.shape, img.dtype))
+        return(img)
+        
         #img_data = get_item
         file = cos.Object(bucket_name, f).get()
         print("type(file) :")
         
-        if file:
-            content_type = 'image/jpeg'
-            headers = {'content-type': content_type}
-            
-            img = open('1002.jpg', 'rb').read()
-            #with open(file, 'rb') as bites:
-            return send_file(img.tostring(), mimetype='image/jpeg')
-        
+                
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
