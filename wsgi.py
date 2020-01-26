@@ -31,6 +31,13 @@ def get_bucket_contents():
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
         print("in try",)
+        files = cos.Bucket(bucket_name).objects.all()
+        print("files :",files)
+ 
+       
+        for file in files:
+           print("in for",)
+           print("Item: {0} ({1} bytes).".format(file.key, file.size))
         item_id = '1002'
         f = item_id + '.jpg'
         #img_data = get_item
@@ -44,19 +51,7 @@ def get_bucket_contents():
             img = open(format(file["Body"]), 'rb').read()
             #with open(file, 'rb') as bites:
             return send_file(img.tostring(), mimetype='image/jpeg')
-        files = cos.Bucket(bucket_name).objects.all()
-        print("files :",files)
- 
-        #for key in mybucket.list():
-        #    print("NAME :".format(
-        #        name = key.name,
-        #        size = key.size,
-        #        modified = key.last_modified,
-        #        ))
-        #files = cos.Bucket(bucket_name).objects.all()
-        for file in files:
-           print("in for",)
-           print("Item: {0} ({1} bytes).".format(file.key, file.size))
+        
     except ClientError as be:
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
