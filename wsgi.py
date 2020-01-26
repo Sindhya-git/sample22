@@ -42,7 +42,7 @@ def get_bucket_contents():
         f = item_id + '.jpg'
         #img_data = get_item
         file = cos.Object(bucket_name, f).get()
-        print("type(file) :", file.key)
+        print("type(file) :")
         
         if file:
             content_type = 'image/jpeg'
