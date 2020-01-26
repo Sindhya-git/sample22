@@ -48,7 +48,7 @@ def get_bucket_contents():
             content_type = 'image/jpeg'
             headers = {'content-type': content_type}
             
-            img = open(file.key, 'rb').read()
+            img = open(files.key, 'rb').read()
             #with open(file, 'rb') as bites:
             return send_file(img.tostring(), mimetype='image/jpeg')
         
