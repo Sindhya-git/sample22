@@ -47,12 +47,12 @@ def get_bucket_contents():
         imgjpg = isr['Body'].read()
         print("read")
         with open(imgjpg, 'rb') as bites:
-        return send_file(
-                     io.BytesIO(bites.read()),
-                     attachment_filename='logo.jpeg',
-                     as_attachment=True,
-                     mimetype='image/jpg'
-               )
+            return send_file(
+                        io.BytesIO(bites.read()),
+                        attachment_filename='logo.jpeg',
+                        as_attachment=True,
+                        mimetype='image/jpg'
+                )
         #img = open(jpg, 'rb').read()
         #URL = "http://cosimg-ikea-d-o-d.gamification-d3c0cb24e2b77f6869027abe3de4bca3-0001.sng01.containers.appdomain.cloud"
         #response = requests.post(URL, data=img, headers=headers)
