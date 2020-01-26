@@ -4,9 +4,7 @@ from flask import send_file
 import ibm_boto3
 from ibm_botocore.client import Config, ClientError
 import tempfile, os
-import sys
-import types
-import cv2
+
 
 
 application = Flask(__name__)
