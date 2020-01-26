@@ -4,8 +4,7 @@ from flask import send_file
 import ibm_boto3
 from ibm_botocore.client import Config, ClientError
 import tempfile, os
-import sys
-import types
+
 
 
 
@@ -50,7 +49,7 @@ def get_bucket_contents():
         #img = open(jpg, 'rb').read()
         URL = "http://cosimg-ikea-d-o-d.gamification-d3c0cb24e2b77f6869027abe3de4bca3-0001.sng01.containers.appdomain.cloud"
         #response = requests.post(URL, data=img, headers=headers)
-        return (jpg)        
+        return send_file(jpg, mimetype='image/jpeg')       
         
         
         
