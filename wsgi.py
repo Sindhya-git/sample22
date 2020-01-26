@@ -50,12 +50,9 @@ def get_bucket_contents():
         #img = open(jpg, 'rb').read()
         URL = "http://cosimg-ikea-d-o-d.gamification-d3c0cb24e2b77f6869027abe3de4bca3-0001.sng01.containers.appdomain.cloud"
         #response = requests.post(URL, data=img, headers=headers)
-        return (jpg, content_type='image/jpeg')
+        return (jpg)        
         
         
-        #img_data = get_item
-        file = cos.Object(bucket_name, f).get()
-        print("type(file) :")
         
                 
     except ClientError as be:
