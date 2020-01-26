@@ -42,13 +42,13 @@ def get_bucket_contents():
         f = item_id + '.jpg'
         #img_data = get_item
         file = cos.Object(bucket_name, f).get()
-        print("type(file) :", file)
+        print("type(file) :", file.key)
         
         if file:
             content_type = 'image/jpeg'
             headers = {'content-type': content_type}
             
-            img = open(format(file["Body"]), 'rb').read()
+            img = open(file.key, 'rb').read()
             #with open(file, 'rb') as bites:
             return send_file(img.tostring(), mimetype='image/jpeg')
         
