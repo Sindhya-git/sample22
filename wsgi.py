@@ -46,7 +46,7 @@ def get_bucket_contents():
         isr = cos.get_object(Bucket=bucket_name, Key=f)
         jpg = isr['Body']
         print(type(jpg))
-        img = skyio.imread(jpg)
+        img = cv2.imread(jpg)
         print("cgsReadImage: \n\tBucket=%s \n\tFile=%s \n\tArraySize=%d %s Type=%s\n" % (bucket_name, f, img.size, img.shape, img.dtype))
         return(img)
         
