@@ -2,6 +2,6 @@ gunicorn
 Flask
 boto3==1.7.46
 botocore==1.10.46
-ibm-cos-sdk==2.5.5
+ibm-cos-sdk==2.6.0
 opencv-python
 
