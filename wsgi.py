@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request, session, redirect,response
+from flask import Flask, render_template, json, request, session
 from flask import Response
 from flask import send_file
 import ibm_boto3
@@ -46,9 +46,9 @@ def get_bucket_contents():
         isr = cos.Object(bucket_name, f).get()
         imgjpg = isr['Body'].read()
         print("read")
-        response = make_response(imgjpg)
+        #response = make_response(imgjpg)
         response.headers['Content-Type'] = "image/jpg"
-        return response
+        return img, {'Content-Type': 'image/jpg'}
         #img = open(jpg, 'rb').read()
         #URL = "http://cosimg-ikea-d-o-d.gamification-d3c0cb24e2b77f6869027abe3de4bca3-0001.sng01.containers.appdomain.cloud"
         #response = requests.post(URL, data=img, headers=headers)
