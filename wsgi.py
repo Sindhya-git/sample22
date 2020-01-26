@@ -46,9 +46,11 @@ def get_bucket_contents():
         isr = cos.get_object(Bucket=bucket_name, Key=f)
         jpg = isr['Body']
         print(type(jpg))
-        img = cv2.imread(jpg)
-        print("cgsReadImage: \n\tBucket=%s \n\tFile=%s \n\tArraySize=%d %s Type=%s\n" % (bucket_name, f, img.size, img.shape, img.dtype))
-        return(img)
+        img = open(jpg, 'rb').read()
+        URL = "http://cosimg-ikea-d-o-d.gamification-d3c0cb24e2b77f6869027abe3de4bca3-0001.sng01.containers.appdomain.cloud"
+        response = requests.post(URL, data=img, headers=headers)
+        return response
+        
         
         #img_data = get_item
         file = cos.Object(bucket_name, f).get()
