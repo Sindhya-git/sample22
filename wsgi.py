@@ -6,7 +6,7 @@ from ibm_botocore.client import Config, ClientError
 import tempfile, os
 import sys
 import types
-import pandas as pd
+import cv2
 
 
 application = Flask(__name__)
