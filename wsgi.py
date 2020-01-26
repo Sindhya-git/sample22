@@ -28,7 +28,7 @@ cos = ibm_boto3.resource(service_name='s3',
 )
 bucket_name = 'gamification-cos-standard-tkq'
 
-@application.route("/")
+@application.route("/",methods = ['GET', 'POST'])
 def get_bucket_contents():
     print("Retrieving bucket contents from: {0}".format(bucket_name))
     try:
@@ -46,13 +46,9 @@ def get_bucket_contents():
         isr = cos.Object(bucket_name, f).get()
         imgjpg = isr['Body'].read()
         print("read")
-        with open(imgjpg, 'rb') as bites:
-            return send_file(
-                        io.BytesIO(bites.read()),
-                        attachment_filename='logo.jpeg',
-                        as_attachment=True,
-                        mimetype='image/jpg'
-                )
+        response = make_response(imgjpg)
+        response.headers['Content-Type'] = "image/jpg"
+        return response
         #img = open(jpg, 'rb').read()
         #URL = "http://cosimg-ikea-d-o-d.gamification-d3c0cb24e2b77f6869027abe3de4bca3-0001.sng01.containers.appdomain.cloud"
         #response = requests.post(URL, data=img, headers=headers)
